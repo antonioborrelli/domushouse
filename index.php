@@ -1,0 +1,10 @@
+<?php 
+
+    # VA IMPLEMENTATA LA LOGICA PER DEFINIRE IL REDIRECT SE 
+    # SULLA PAGINA LOGIN O SU HOME A SECONDA SE E' STATO 
+    # EFFETTUATO IL LOGNI O MENO'
+
+    header("location: view/login.php");
+
+
+?>
