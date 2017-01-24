@@ -1,3 +1,4 @@
+<?php include '../controller/testLogin.php'; ?>
 <?php include 'component/header.php';?>
 
     
@@ -20,13 +21,13 @@
             <div class="col-md-1"></div>
             <div class="col-md-2">
                 <div class="input-group">
-                    <a href="lights.php"><button type="button" class="bottone-grande">Luci</button></a>
+                    <a href="lights.php"><button type="button" class="bottone-grande lux-off">Luci</button></a>
                 </div>
             </div>
             <div class="col-md-2"></div>
             <div class="col-md-2">
                 <div class="input-group">
-                    <a href="doors.php"><button type="button" class="bottone-grande">Porte</button></a>
+                    <a href="doors.php"><button type="button" class="bottone-grande lock">Porte</button></a>
                 </div>
             </div>
             <div class="col-md-2"></div>
@@ -50,7 +51,7 @@
             <div class="col-md-2"></div>
             <div class="col-md-1"></div>
             <div class="col-md-2"></div>
-                <a href="settings.php"><button type="button" class="bottone-grande">Impostazioni</button></a>
+                <a href="settings.php"><button type="button" class="bottone-grande settings">Impostazioni</button></a>
             </div>
             <div class="col-md-2"></div>
             <div class="col-md-2"></div>

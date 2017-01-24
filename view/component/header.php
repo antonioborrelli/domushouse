@@ -21,26 +21,43 @@
   <body>
 
   <?php 
+
+    $utente=$_COOKIE["LOGIN"];
+    $isAdmin=false;
+
+    if($utente == 'admin')
+      $isAdmin=true;
+
     $url =  $_SERVER['REQUEST_URI'];
 
     $url_list = explode("/", $_SERVER['REQUEST_URI']);
 
     $pagina = $url_list[count($url_list)-1];
 
-    if( $pagina != 'login.php' ){
-     echo '<div class="container">
-              <div class="row">
-                  <div class="col-md-2 col_header_1">
-                      <img src="../img/logo.png" class="img-rounded" >
+    if( $pagina != 'index.php' && $pagina != '' ){
+
+        $visibile="";
+        if($pagina == 'home.php'){
+          $visibile="none";
+        }
+      
+        echo '<div class="container">
+                  <div class="row">
+                      <div class="col-md-2 col_header_1">
+                          <img src="../img/logo.png" class="img_home" >
+                      </div>
+                      <div class="col-md-8 col_header_2">
+                          <h3>Benvenuto '.$utente.'</h3>
+                      </div>
+                      <div class="col-md-1 col_header_3">
+                          <h3> <a href="home.php"><button type="button" class="bottone-base"style=" display: '.$visibile.';" >Home</button></a></h3>
+                      </div>
+                      <div class="col-md-1 col_header_3">
+                          <h3> <a href="../controller/logout.php"><button type="button" class="bottone-base">Logout</button></a></h3>
+                      </div>
                   </div>
-                  <div class="col-md-8 col_header_2">
-                      <h3>Benvenuto nome_utente</h3>
-                  </div>
-                  <div class="col-md-2 col_header_3">
-                      <h3> <a href="login.php"><button type="button" class="bottone-base">Logout</button></a></h3>
-                  </div>
-              </div>
-            </div>';
+                </div>';
+
 
     }
   

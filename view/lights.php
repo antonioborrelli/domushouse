@@ -1,5 +1,5 @@
+<?php include '../controller/testLogin.php'; ?>
 <?php include 'component/header.php';?>
-
     
     <div class="container">
 
@@ -14,25 +14,22 @@
             </div>
         </div>
 
-
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-1"></div>
             <div class="col-md-2">
                 <div class="input-group">
-                    <a href="lights.php"><button type="button" class="bottone-grande">Ingresso</button></a>
+                    <a href="lights.php"><button type="button" class="bottone-grande lux-off">Ingresso</button></a>
                 </div>
             </div>
             <div class="col-md-2"></div>
             <div class="col-md-2">
                 <div class="input-group">
-                    <a href="doors.php"><button type="button" class="bottone-grande">Cucina</button></a>
+                    <a href="doors.php"><button type="button" class="bottone-grande lux-off">Cucina</button></a>
                 </div>
             </div>
             <div class="col-md-2"></div>
-                        <div class="col-md-1"></div>
-
-
+            <div class="col-md-1"></div>
         </div>
 
         <div class="row">
@@ -51,19 +48,17 @@
             <div class="col-md-1"></div>
             <div class="col-md-2">
                 <div class="input-group">
-                    <a href="lights.php"><button type="button" class="bottone-grande">Bagno</button></a>
+                    <a href="lights.php"><button type="button" class="bottone-grande lux-on">Bagno</button></a>
                 </div>
             </div>
             <div class="col-md-2"></div>
             <div class="col-md-2">
                 <div class="input-group">
-                    <a href="doors.php"><button type="button" class="bottone-grande">Letto</button></a>
+                    <a href="doors.php"><button type="button" class="bottone-grande lux-off">Letto</button></a>
                 </div>
             </div>
             <div class="col-md-2"></div>
-                        <div class="col-md-1"></div>
-
-
+            <div class="col-md-1"></div>
         </div>
         
 
