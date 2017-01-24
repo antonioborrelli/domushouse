@@ -3,8 +3,9 @@
         header('Location: home.php');
     }
 include 'component/header.php';?>
+<script language="javascript" type="text/javascript" src="script/index.js"></script>
 
-<form action="../controller/login.php" method="POST">
+<!-- <form action="../controller/login.php" method="POST"> -->
     <div class="container">
         <div class="row riga_home_img">
             <div class="col-md-4 col-md-offset-2"><img src="../img/logo.png" class="img_home" ></div>
@@ -22,7 +23,7 @@ include 'component/header.php';?>
                 </div>
                 <div class="row riga_home_imp">
                     <div class="col-md-12">
-                        <button type="submit" class="bottone-base">Login</button>
+                        <button type="button" id="login" name="login" class="bottone-base">Login</button>
                     </div>
                 </div>
 
@@ -95,6 +96,6 @@ include 'component/header.php';?>
     -->
     </div>
         
-</form>
+<!-- </form> -->
   
 <?php include 'component/footer.php';?>

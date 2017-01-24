@@ -7,6 +7,11 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Domus - House</title>
 
+    <!-- jquery -->
+    <script language="javascript" type="text/javascript" src="../js/jquery-3.1.1.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../view/script/utility.js"></script>
+    
+
     <!-- Bootstrap -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/custom.css" rel="stylesheet">
@@ -21,6 +26,7 @@
   <body>
 
   <?php 
+    include 'loader.php'; 
 
     $utente=$_COOKIE["LOGIN"];
     $isAdmin=false;
@@ -53,7 +59,7 @@
                           <h3> <a href="home.php"><button type="button" class="bottone-base"style=" display: '.$visibile.';" >Home</button></a></h3>
                       </div>
                       <div class="col-md-1 col_header_3">
-                          <h3> <a href="../controller/logout.php"><button type="button" class="bottone-base">Logout</button></a></h3>
+                          <h3> <button type="button" id="logout" name="logout" class="bottone-base">Logout</button></h3>
                       </div>
                   </div>
                 </div>';
