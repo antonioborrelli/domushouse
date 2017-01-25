@@ -20,8 +20,25 @@ $(function() {
 			  dataType: "html",
 			  // imposto un'azione per il caso di successo
 			  success: function(risposta){
-				  
-				console.log('UTENTI' + risposta);
+
+				var result = JSON.parse(risposta);
+				
+				if(result != null){
+
+					  if(result.data!= null && result.data!= undefined){
+						  var data= result.data
+
+						  for (i=0; i<data.length; i++){
+							  var riga= '<tr><th scope="row">'+data[i].id+'</th><td>'+data[i].username+'</td><td>'+data[i].password+'</td></tr>';
+							  $("#contenuto_tabella").append(riga);
+
+						  }
+							  
+							  
+						}
+				}
+
+
 
 
                 //NASCONDO IL LOADER
