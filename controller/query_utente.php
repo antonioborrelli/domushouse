@@ -4,6 +4,7 @@
     define('LOGOUT',	            'logout_utente');
 	define('INSERIMENTO_UTENTE',	'insert_utente');
 	define('MODIFICA_PASSWORD',		'update_pw');
+	define('ELIMINA_UTENTE',		'delete_utente');
     define('GET_UTENTI',		    'get_utenti');
 
 	$operazione=$_POST['operazione'];
@@ -33,21 +34,21 @@
         
             setcookie('LOGIN', $Dati["username"], time()+$TempoDiValidita, "/" );
 
-            $result = 1;
+            $result = array('stato' => 1);
 
         }else{
 
-            $result = 0;
+            $result = array('stato' => 0);
 
         }
 
-		echo $result;
+        echo json_encode($result);
 
     }else if($operazione == LOGOUT){
 
         setcookie('LOGIN', null, -1, "/" );
 
-		echo '1';
+		 echo json_encode('1');
 
     }else if($operazione == INSERIMENTO_UTENTE){
 
@@ -58,7 +59,29 @@
 
         $result = mysql_query($Sql) or die('Query failed: ' . mysql_error());
 
-		echo $result;
+        if($result){
+            $result = array('stato' => 1);
+        }else{
+            $result = array('stato' => 0);
+        }
+
+		echo json_encode($result);
+
+    }else if($operazione == ELIMINA_UTENTE){
+
+        $id = $_POST['id'];
+
+        $Sql = "DELETE FROM utenti WHERE id = '$id'";
+
+        $result = mysql_query($Sql) or die('Query failed: ' . mysql_error());
+
+        if($result){
+            $result = array('stato' => 1);
+        }else{
+            $result = array('stato' => 0);
+        }
+
+		echo json_encode($result);
 
     }else if($operazione == MODIFICA_PASSWORD){
 
@@ -69,13 +92,19 @@
 
         $result = mysql_query($Sql) or die('Query failed: ' . mysql_error());
 
-		echo $result;
+        if($result){
+            $result = array('stato' => 1);
+        }else{
+            $result = array('stato' => 0);
+        }
+
+		 echo json_encode($result);
 
     }else if($operazione == GET_UTENTI){
 
-        $Sql = "SELECT * FROM utenti ;";
+        $Sql = "SELECT * FROM utenti WHERE 1=1;";
 
-        $result = mysql_query($query) or die('Query failed: ' . mysql_error());
+        $result = mysql_query($Sql) or die('Query failed: ' . mysql_error());
 		
 		//creazione oggetto Json contenente i risultati della query
 		$rows = array();
