@@ -18,6 +18,7 @@
                             <th>Id</th>
                             <th>Username</th>
                             <th>Password</th>
+                            <th>Elimina</th>
                         </tr>
                     </thead>
                     <tbody id="contenuto_tabella"></tbody>
