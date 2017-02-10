@@ -200,3 +200,26 @@
 .logo_mobile{
     width: 50%;
 }
+
+.contenuto_tabella{
+	
+}
+
+.my_thumbnail{
+	border: 0px!important;
+	border-top:none!important;
+}
+
+.btn-login{
+	text-align: right;
+	padding-right: inherit;
+}
+
+.list-group-index{
+	margin-top: 25px;
+}
+
+.my_panel{
+	-webkit-box-shadow:none!important;
+	box-shadow:none!important;
+}
