@@ -2,9 +2,15 @@
 import sys as sys
 import RPi.GPIO as GPIO
 import time
+from log import log
+import MySQLdb
 
-
+log("SWITCHING - INIZIO CAMBIO STATO DI UN RELE'")
 nome = int(sys.argv[1])
+
+db = MySQLdb.connect(host="localhost", user="root", passwd="root", db="domus_house")          
+    
+cur = db.cursor()
 
 
 if (len(sys.argv) == 3):
@@ -24,7 +30,12 @@ else:
 
     if GPIO.input(nome):
         GPIO.output(nome, 0)
+        cur.execute("UPDATE rele SET stato = true WHERE id = %d" % (nome))
+        db.commit()
     else:
         GPIO.output(nome, 1)
+        cur.execute("UPDATE rele SET stato = false WHERE id = %d" % (nome))
+        db.commit()
     
 
+log("SWITCHING - FINE CAMBIO STATO DI UN RELE'")
