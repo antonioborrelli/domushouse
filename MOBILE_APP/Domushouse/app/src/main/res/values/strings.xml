@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Domushouse</string>
+    <string name="URL_UTENTE">http://172.16.66.96/domushouse.it/query_utente.php</string>
+    <string name="title_activity_termostato">termostato</string>
+</resources>
