@@ -21,13 +21,13 @@
             <div class="col-md-1"></div>
             <div class="col-md-2">
                 <div class="input-group">
-                    <a href="lights.php"><button type="button" class="bottone-grande lux-off">Luci</button></a>
+                    <a href="lights.php"><img src="../img/luxoff.png" class=""></a>
                 </div>
             </div>
             <div class="col-md-2"></div>
             <div class="col-md-2">
                 <div class="input-group">
-                    <a href="doors.php"><button type="button" class="bottone-grande lock">Porte</button></a>
+                    <a href="doors.php"><img src="../img/lock01.png" class=""></a>
                 </div>
             </div>
             <div class="col-md-2"></div>
@@ -51,7 +51,7 @@
             <div class="col-md-2"></div>
             <div class="col-md-1"></div>
             <div class="col-md-2"></div>
-                <a href="settings.php"><button type="button" class="bottone-grande settings">Impostazioni</button></a>
+                <a href="settings.php"><img src="../img/settings00.png" class=""></a>
             </div>
             <div class="col-md-2"></div>
             <div class="col-md-2"></div>

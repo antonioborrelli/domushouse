@@ -40,7 +40,7 @@
 
         <div class="alert alert-info" role="alert">Scarica l'app per il tuo dispositivo</div>
 
-        <div class="row" >
+        <div class="row" style="display:none;">
             <div class="col-md-12">
                 <br><a href="../app/domushouse.apk" download="domushouse.apk"><img class="img_mobile" src="../img/Download_on_the_App_Store_Badge_US-UK_135x40.png" > </a><br>
             </div>
