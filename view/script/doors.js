@@ -5,6 +5,58 @@
  * ======================================================================== */
 
 $(function() {
+	
+	//AGGIORNAMENTO STATO PORTE
+	// INIZIO CHIMATA AJAX
+    $.ajax({
+		  // definisco il tipo della chiamata
+		  type: "POST",
+		  // specifico la URL della risorsa da contattare
+		  url: "../controller/webserver.php",
+		  // passo dei dati alla risorsa remota
+		  data: JSON.parse('{ "operazione" : "door"}'),
+		  // definisco il formato della risposta
+		  dataType: "html",
+		  // imposto un'azione per il caso di successo
+		  success: function(risposta){
+			  
+			console.log(risposta);
+			var result = JSON.parse(risposta);
+			
+			if(result != null){
+
+				  if(result.data!= null && result.data!= undefined){
+					  var data= result.data
+					  log=data;
+					  
+					  for(i=0; i< data.length; i++){
+//						  $('#'+data[i].descrizione).removeClass('lock');
+//						  $('#'+data[i].descrizione).removeClass('unlock');
+						  if(data[i].stato==1){
+							  $('#'+data[i].descrizione+' img')[0].src="../img/unlock01.png";
+//							  $('#'+data[i].descrizione).addClass('unlock')
+						  }else{
+							  $('#'+data[i].descrizione+' img')[0].src="../img/lock01.png";
+//							  $('#'+data[i].descrizione).addClass('lock')
+						  }
+					  }
+					  
+					  
+						  
+					}
+			}
+
+            //NASCONDO IL LOADER
+			$("#myLoader").modal("hide");
+
+		  },// ed una per il caso di fallimento
+		  error: function(){
+		    alert("Si è verificato un errore riprovare più tardi!!!");
+            //NASCONDO IL LOADER
+			$("#myLoader").modal("hide");
+		  }
+	});
+    // FINE CHIMATA AJAX
 
     //Gestione pressione bottone Cancello Auto
     $( "#auto" ).on('click keyCode',switch_auto);
@@ -20,7 +72,7 @@ $(function() {
 			  // definisco il tipo della chiamata
 			  type: "POST",
 			  // specifico la URL della risorsa da contattare
-			  url: "../controller/gestione_impianto.php",
+			  url: "../controller/webserver.php",
 			  // passo dei dati alla risorsa remota
 			  data: JSON.parse(arrayData),
 			  // definisco il formato della risposta
@@ -32,6 +84,9 @@ $(function() {
 
                 //NASCONDO IL LOADER
 				$("#myLoader").modal("hide");
+				//REFRESCH DELLA PAGINA
+				location.reload();
+
 
 			  },// ed una per il caso di fallimento
 			  error: function(){
@@ -57,7 +112,7 @@ $(function() {
 			  // definisco il tipo della chiamata
 			  type: "POST",
 			  // specifico la URL della risorsa da contattare
-			  url: "../controller/gestione_impianto.php",
+			  url: "../controller/webserver.php",
 			  // passo dei dati alla risorsa remota
 			  data: JSON.parse(arrayData),
 			  // definisco il formato della risposta
@@ -69,6 +124,9 @@ $(function() {
 
                 //NASCONDO IL LOADER
 				$("#myLoader").modal("hide");
+				//REFRESCH DELLA PAGINA
+				location.reload();
+
 
 			  },// ed una per il caso di fallimento
 			  error: function(){
@@ -94,7 +152,7 @@ $(function() {
 			  // definisco il tipo della chiamata
 			  type: "POST",
 			  // specifico la URL della risorsa da contattare
-			  url: "../controller/gestione_impianto.php",
+			  url: "../controller/webserver.php",
 			  // passo dei dati alla risorsa remota
 			  data: JSON.parse(arrayData),
 			  // definisco il formato della risposta
@@ -106,6 +164,9 @@ $(function() {
 
                 //NASCONDO IL LOADER
 				$("#myLoader").modal("hide");
+				//REFRESCH DELLA PAGINA
+				location.reload();
+
 
 			  },// ed una per il caso di fallimento
 			  error: function(){
@@ -131,7 +192,7 @@ $(function() {
 			  // definisco il tipo della chiamata
 			  type: "POST",
 			  // specifico la URL della risorsa da contattare
-			  url: "../controller/gestione_impianto.php",
+			  url: "../controller/webserver.php",
 			  // passo dei dati alla risorsa remota
 			  data: JSON.parse(arrayData),
 			  // definisco il formato della risposta
@@ -143,6 +204,9 @@ $(function() {
 
                 //NASCONDO IL LOADER
 				$("#myLoader").modal("hide");
+				//REFRESCH DELLA PAGINA
+				location.reload();
+
 
 			  },// ed una per il caso di fallimento
 			  error: function(){

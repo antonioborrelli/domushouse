@@ -4,62 +4,14 @@
  * Componente utilizzato per gestire le impostazioni dell'utente
  * ======================================================================== */
 
-	//Elimina utente
-    function delete_utente(id){
-        var dataSet = [];
-        var arrayData=	'{'+
-                        '"operazione" : "delete_utente",' +
-                        '"id" : "'+id+'"}' ;
-
-        // INIZIO CHIAMATA AJAX
-        $("#myLoader").modal("show");
-        $.ajax({
-			  // definisco il tipo della chiamata
-			  type: "POST",
-			  // specifico la URL della risorsa da contattare
-			  url: "../controller/query_utente.php",
-			  // passo dei dati alla risorsa remota
-			  data: JSON.parse(arrayData),
-			  // definisco il formato della risposta
-			  dataType: "html",
-			  // imposto un'azione per il caso di successo
-			  success: function(risposta){
-				  
-				console.log(risposta);
-
-                if(risposta == 1){
-                    alert('Eliminazione avvenuto con successo!');
-                }
-
-				location.reload();
-
-                //NASCONDO IL LOADER
-				$("#myLoader").modal("hide");
-
-			  },// ed una per il caso di fallimento
-			  error: function(){
-			    alert("Si è verificato un errore riprovare più tardi!!!");
-                //NASCONDO IL LOADER
-				$("#myLoader").modal("hide");
-			  }
-		});
-        // FINE CHIAMATA AJAX
-
-    }
-
-
-
-
-$(function() {
-
-
+	function riempimento_utenti(){
         // INIZIO CHIAMATA AJAX PER IL RIEMPIMENTO DELLA TABELLA UTENTI
         $("#myLoader").modal("show");
         $.ajax({
 			  // definisco il tipo della chiamata
 			  type: "POST",
 			  // specifico la URL della risorsa da contattare
-			  url: "../controller/query_utente.php",
+			  url: "../controller/webserver.php",
 			  // passo dei dati alla risorsa remota
 			  data: JSON.parse('{"operazione" : "get_utenti"}'),
 			  // definisco il formato della risposta
@@ -78,9 +30,9 @@ $(function() {
 							  var riga="";
 
 							  if(data[i].username == 'admin')
-							  	riga= '<tr><th scope="row">'+data[i].id+'</th><td>'+data[i].username+'</td><td>'+data[i].password+'</td></td></tr>';
+							  	riga= '<tr><td scope="row"><i class="fa fa-user-secret fa-6" aria-hidden="true"></i> '+data[i].username+'</td><td></td></tr>';
 							  else
-							  	riga= '<tr><th scope="row">'+data[i].id+'</th><td>'+data[i].username+'</td><td>'+data[i].password+'</td><td style="text-align: center;"><button type="button" onclick="delete_utente('+data[i].id+');" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></button></td></tr>';
+							  	riga= '<tr><td scope="row"><i class="fa fa-user-circle-o" aria-hidden="true"></i> '+data[i].username+'</td><td style="text-align: right;"><button type="button" onClick="delete_utente('+data[i].id+');" class="btn btn-danger btn-xs rimozione_utente"><span class="glyphicon glyphicon-trash"></span></button></td></tr>';
 							  
 							  $("#contenuto_tabella").append(riga);
 
@@ -104,13 +56,11 @@ $(function() {
 			  }
 		});
         // FINE CHIAMATA AJAX
+	}
+	
+	
 
-
-    //Gestione pressione bottone Salva
-    $( "#salva" ).on('click keyCode',aggiorna_password);
     
-    //Gestione pressione bottone Aggiungi
-    $( "#aggiungi" ).on('click keyCode',nuovo_utente);
 
 
     //Aggiungi nuovo utente
@@ -127,15 +77,35 @@ $(function() {
 			  // definisco il tipo della chiamata
 			  type: "POST",
 			  // specifico la URL della risorsa da contattare
-			  url: "../controller/query_utente.php",
+			  url: "../controller/webserver.php",
 			  // passo dei dati alla risorsa remota
 			  data: JSON.parse(arrayData),
 			  // definisco il formato della risposta
 			  dataType: "html",
 			  // imposto un'azione per il caso di successo
 			  success: function(risposta){
+				  
+				  var result = JSON.parse(risposta);
+					
+					if(result != null && result.stato==1){
+						$( "#new_username" ).val("");
+						$( "#new_password" ).val("");
+						$(".row_error").hide();
+						$(".msg_error").html("");
+						$(".row_success").show();
+						$(".msg_success").html(result.msg);
+						$("#contenuto_tabella").empty();
+						
+						riempimento_utenti();
+						
+					}else{
+						$(".row_success").hide();
+						$(".msg_success").html("");
+						$(".row_error").show();
+						$(".msg_error").html(result.msg);
+					}
 
-				location.reload();
+				
 
                 //NASCONDO IL LOADER
 				$("#myLoader").modal("hide");
@@ -165,7 +135,7 @@ $(function() {
 			  // definisco il tipo della chiamata
 			  type: "POST",
 			  // specifico la URL della risorsa da contattare
-			  url: "../controller/query_utente.php",
+			  url: "../controller/webserver.php",
 			  // passo dei dati alla risorsa remota
 			  data: JSON.parse(arrayData),
 			  // definisco il formato della risposta
@@ -173,12 +143,22 @@ $(function() {
 			  // imposto un'azione per il caso di successo
 			  success: function(risposta){
 				  
-				console.log(risposta);
-				var result = JSON.parse(risposta);
-				console.log(result.stato);
-                if(result != null && result.stato == 1){
-                    alert('Aggiornamento avvenuto con successo!');
-                }
+				  var result = JSON.parse(risposta);
+	  				
+	  				if(result != null && result.stato==1){
+	  					$( "#password" ).val("");
+	  					$(".row_error").hide();
+	  					$(".msg_error").html("");
+	  					$(".row_success").show();
+	  					$(".msg_success").html(result.msg);
+	  					$("#contenuto_tabella").empty();
+	  					riempimento_utenti();
+	  				}else{
+	  					$(".row_success").hide();
+	  					$(".msg_success").html("");
+	  					$(".row_error").show();
+	  					$(".msg_error").html(result.msg);
+	  				}
 
                 //NASCONDO IL LOADER
 				$("#myLoader").modal("hide");
@@ -197,5 +177,85 @@ $(function() {
 
 
     }
+    
+    
+  //Elimina utente
+  function delete_utente(id){
+      var dataSet = [];
+      var arrayData=	'{'+
+                      '"operazione" : "delete_utente",' +
+                      '"id" : "'+id+'"}' ;
+  
+      // INIZIO CHIAMATA AJAX
+      $("#myLoader").modal("show");
+      $.ajax({
+  		  // definisco il tipo della chiamata
+  		  type: "POST",
+  		  // specifico la URL della risorsa da contattare
+  		  url: "../controller/webserver.php",
+  		  // passo dei dati alla risorsa remota
+  		  data: JSON.parse(arrayData),
+  		  // definisco il formato della risposta
+  		  dataType: "html",
+  		  // imposto un'azione per il caso di successo
+  		  success: function(risposta){
+  			  
+  			  var result = JSON.parse(risposta);
+  				
+  				if(result != null && result.stato==1){
+  					$(".row_error").hide();
+  					$(".msg_error").html("");
+  					$(".row_success").show();
+  					$(".msg_success").html(result.msg);
+  					$("#contenuto_tabella").empty();
+  					riempimento_utenti();
+  				}else{
+  					$(".row_success").hide();
+  					$(".msg_success").html("");
+  					$(".row_error").show();
+  					$(".msg_error").html(result.msg);
+  				}
+  
+              //NASCONDO IL LOADER
+  			$("#myLoader").modal("hide");
+  
+  		  },// ed una per il caso di fallimento
+  		  error: function(){
+  		    alert("Si è verificato un errore riprovare più tardi!!!");
+              //NASCONDO IL LOADER
+  			$("#myLoader").modal("hide");
+  		  }
+  	});
+      // FINE CHIAMATA AJAX
+  
+  }
+
+
+
+
+$(function() {
+
+	riempimento_utenti();
+	//Gestione pressione bottone Salva
+    $( "#salva" ).on('click keyCode',aggiorna_password);
+    $("#password").keypress(function(e) {
+  	  if (e.which == 13) {
+  		aggiorna_password();
+  	  }
+  	});
+    
+    //Gestione pressione bottone Aggiungi
+    $( "#aggiungi" ).on('click keyCode',nuovo_utente);
+    $("#new_username").keypress(function(e) {
+  	  if (e.which == 13) {
+  		  nuovo_utente();
+  	  }
+  	});
+    $("#new_password").keypress(function(e) {
+  	  if (e.which == 13) {
+  		  nuovo_utente();
+  	  }
+  	});
 
 });
+

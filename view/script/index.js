@@ -8,7 +8,11 @@ $(function() {
 
     //Gestione pressione bottone Salva
     $( "#login" ).on('click keyCode',login);
-    
+    $("body").keypress(function(e) {
+    	  if (e.which == 13) {
+    		  login();
+    	  }
+    	});
   
     //Funzione per effettuare il login
     function login(){
@@ -24,7 +28,7 @@ $(function() {
 			  // definisco il tipo della chiamata
 			  type: "POST",
 			  // specifico la URL della risorsa da contattare
-			  url: "../controller/query_utente.php",
+			  url: "../controller/webserver.php",
 			  // passo dei dati alla risorsa remota
 			  data: JSON.parse(arrayData),
 			  // definisco il formato della risposta
@@ -33,12 +37,22 @@ $(function() {
 			  success: function(risposta){
 				  
 				console.log(risposta);
+				
+				 var result = JSON.parse(risposta);
+	  				
+	  				if(result != null && result.stato==1){
+	  					window.location.replace("../view/home.php");
+	  				}else{
 
-                if(risposta == 1){
-                    window.location.replace("../view/home.php");
-                }else{
-                    window.location.replace("../view/index.php");
-                }
+	  					$(".row_error").show();
+	  					$(".msg_error").html(result.msg);
+	  					$( "#username" ).val("");
+	                	$( "#password" ).val("");
+	  				}
+				
+				
+
+               
 
                 //NASCONDO IL LOADER
 				$("#myLoader").modal("hide");
