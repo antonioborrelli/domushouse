@@ -5,7 +5,7 @@
     # EFFETTUATO IL LOGNI O MENO'
 
     
-
+// phpinfo();
 
     if (is_device()) {
         // echo "Mobile";
