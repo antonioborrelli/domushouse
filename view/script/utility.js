@@ -33,19 +33,22 @@ $(function() {
 				  if(result.data!= null && result.data!= undefined){
 					  var data= result.data
 
+					  $('.temp_attuale').html(data.temp_attuale + " °C")
+					  $('.umi_attuale').html(data.umidita_attuale + " %")
+					  $( ".temp_des" ).val(data.temperatura);
 					  
-					  for(i=0; i< data.length; i++){
-						  
-						  $('.temp_attuale').html(data[i].temp_attuale + " °C")
-						  $('.umi_attuale').html(data[i].umidita_attuale + " %")
-						  $( ".temp_des" ).val(data[i].temperatura);
-//						  console.log("Temp attuale " + data[i].temp_attuale);
-//						  console.log("Umidità attuale " + data[i].umidita_attuale);
-//						  console.log("Temp desiderata " + data[i].temperatura);
-//						  console.log("data" + data[i].data);
-						  
-						  
-					  }
+//					  for(i=0; i< data.length; i++){
+//						  
+//						  $('.temp_attuale').html(data[i].temp_attuale + " °C")
+//						  $('.umi_attuale').html(data[i].umidita_attuale + " %")
+//						  $( ".temp_des" ).val(data[i].temperatura);
+////						  console.log("Temp attuale " + data[i].temp_attuale);
+////						  console.log("Umidità attuale " + data[i].umidita_attuale);
+////						  console.log("Temp desiderata " + data[i].temperatura);
+////						  console.log("data" + data[i].data);
+//						  
+//						  
+//					  }
 					  
 					  
 						  

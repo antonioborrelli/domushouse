@@ -1,4 +1,6 @@
 <?php
+include 'Sensore.php';
+include 'Rele.php';
 
 	define('UPDATE_LIGHTS', 'lights');
 	define('UPDATE_DOOR', 'door');
@@ -26,19 +28,16 @@
    	
    	case UPDATE_LIGHTS:
    		{
-   			$Sql = "SELECT * 
-   					FROM `rele` 
-   					WHERE 	descrizione = 'cucina' 
-   							OR descrizione = 'bagno' 
-   							OR descrizione = 'letto' 
-   							OR descrizione = 'ingresso'";
+   			$cucina = new Rele('cucina');
+	   		$bagno = new Rele('bagno');
+	   		$letto = new Rele('letto');
+	   		$ingresso = new Rele('ingresso');
+   				
+   			$rows['data'][]=$cucina;
+   			$rows['data'][]=$bagno;
+   			$rows['data'][]=$letto;
+   			$rows['data'][]=$ingresso;
    			
-   			$result = mysql_query($Sql) or die('Query failed: ' . mysql_error());
-   			
-   			$rows = array();
-   			while($r = mysql_fetch_assoc($result)) {
-   				$rows['data'][] = $r;
-   			}
    			
    			echo json_encode($rows);
    			
@@ -48,20 +47,18 @@
    		
    		case UPDATE_DOOR:
    			{
-   				$Sql = "SELECT *
-   					FROM `rele`
-   					WHERE 	descrizione = 'auto'
-   							OR descrizione = 'portone'
-   							OR descrizione = 'porta'";
-   				 
-   				$result = mysql_query($Sql) or die('Query failed: ' . mysql_error());
-   				 
-   				$rows = array();
-   				while($r = mysql_fetch_assoc($result)) {
-   					$rows['data'][] = $r;
-   				}
-   				 
+   				$auto = new Rele('auto');
+   				$portone = new Rele('portone');
+   				$porta = new Rele('porta');
+   					
+   				$rows['data'][]=$auto;
+   				$rows['data'][]=$portone;
+   				$rows['data'][]=$porta;
+   				
+   				
    				echo json_encode($rows);
+   				
+   				
    				 
    				 
    				 
@@ -69,16 +66,13 @@
    			
    		case UPDATE_TEMPERATURE:
    			{
-   				$Sql = "SELECT *
-   						FROM `temperature`
-   						WHERE 	id_rele = '4'";
-   					 
-   				$result = mysql_query($Sql) or die('Query failed: ' . mysql_error());
-   					 
-   				$rows = array();
-   				while($r = mysql_fetch_assoc($result)) {
-   					$rows['data'][] = $r;
-   				}
+
+
+   				$sensore = new Sensore('4');
+   				
+   				$rows['data']['temp_attuale'] = $sensore->getTemp();
+   				$rows['data']['umidita_attuale'] = $sensore->getUmid();
+   				$rows['data']['temperatura'] = $sensore->getTempDes();
    					 
    				echo json_encode($rows);
    					 
