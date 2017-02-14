@@ -7,8 +7,8 @@ package com.example.domushouse;
 public final class Costanti {
 
 
-//    public final static String URL_SERVER="http://172.16.57.72/domushouse/";
-    public final static String URL_SERVER="http://172.24.1.1/";
+    public final static String URL_SERVER="http://172.16.67.111/domushouse/";
+//    public final static String URL_SERVER="http://172.24.1.1/";
     public final static String WEB_SERVER="controller/webserver.php";
 //    public final static String QUERY_UTENTE="controller/query_utente.php";
     public final static String OPERAZIONE="operazione";
