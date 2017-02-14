@@ -76,7 +76,7 @@ public class Termostato extends AppCompatActivity {
                 Log.d("CREATED", "onSuccess response Object: " + response.toString());
 
                 try {
-                    JSONObject data = response.getJSONArray("data").getJSONObject(0);
+                    JSONObject data = response.getJSONObject("data");
                     int temp=data.getInt("temp_attuale");
                     int umidita_attuale=data.getInt("umidita_attuale");
                     int temperatura_desiderata = data.getInt("temperatura");
