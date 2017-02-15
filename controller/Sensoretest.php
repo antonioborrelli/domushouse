@@ -9,21 +9,16 @@ final class SensoreTest extends TestCase
 {
     public function testTemp()
     {
-        $s = new Sensore('4');
-        $this->assertEquals('26', $s->getTemp());
+        $sensore = new Sensore('4');
+        $this->assertTrue(0 <=  $sensore->getTemp() && $sensore->getTemp() <= 50);
        
     }
 
     public function testUmid()
     {
-        $s = new Sensore('4');
-        $this->assertEquals('15', $s->getUmid());
+    	$sensore = new Sensore('4');
+        $this->assertTrue(0 <= $sensore->getUmid() && $sensore->getUmid() <=100);
     }
     
-    public function testTempDes()
-    {
-    	$s = new Sensore('4');
-    	$this->assertEquals('38', $s->getTempDes());
-    }
 
 }
