@@ -4,8 +4,8 @@
 class Sensore
 {
 
-//     private $DB_SERVER='localhost:/Applications/MAMP/tmp/mysql/mysql.sock';
-    private $DB_SERVER='localhost';
+    private $DB_SERVER='localhost:/Applications/MAMP/tmp/mysql/mysql.sock';
+//     private $DB_SERVER='localhost';
     private $DB_USERNAME= 'root';
     private $DB_PASSWORD= 'root';
     private $DB_DATABASE= 'domus_house';
