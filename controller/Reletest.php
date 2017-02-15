@@ -9,21 +9,23 @@ final class ReleTest extends TestCase
 {
     public function testDescrizione()
     {
-        $r = new Rele('cucina');
-        $this->assertEquals('corridoio', $r->getDescrizione());
+        $rele = new Rele('cucina');
+        $this->assertInternalType('string', $rele->getDescrizione());
        
     }
 
     public function testId()
     {
-        $r = new Rele('cucina');
-        $this->assertEquals('23', $r->getId());
+    	
+    	$rele = new Rele('cucina');
+        $listaPin = ['12', '16', '18','20','21','23','24','25','4'];
+        $this->assertContains($rele->getId(), $listaPin);
     }
     
     public function testStato()
     {
-    	$r = new Rele('cucina');
-    	$this->assertEquals('1', $r->getStato());
+    	$rele = new Rele('cucina');
+    	$this->assertTrue('1' == $rele->getStato() || '0' == $rele->getStato());
     }
     
     
